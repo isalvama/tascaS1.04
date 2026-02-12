@@ -15,6 +15,7 @@ public class BooksCollection{
 
     // Add a book to the collection
     public void addBook(Book b){
+       if(!bookArrayList.contains(b))
         bookArrayList.add(b);
     }
 
@@ -40,16 +41,16 @@ public class BooksCollection{
 
     // Delete a book from its title.
     public void removeBookByTitle(String title){
-        for(Book b : bookArrayList){
-            if (title.equals(b.getTitle())){
-                bookArrayList.remove(b);
+        for (int i = 0; i < bookArrayList.size(); i++){
+            if (title.equals(bookArrayList.get(i).getTitle())){
+                bookArrayList.remove(i);
             }
         }
     }
 
     // Return a copy of the list in alphabetical order.
-    public List<Book> getCollection(){
-        List<Book> listCopy = copyOf(bookArrayList);
+    public List<Book> getOrderedCollection(){
+        ArrayList<Book> listCopy = new ArrayList<>(bookArrayList);
           Collections.sort(listCopy, new NameComparator());
         return listCopy;
     }
