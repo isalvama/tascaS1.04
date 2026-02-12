@@ -1,26 +1,10 @@
 package first_level.exercise1;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-
+import java.util.*;
 import static java.util.List.copyOf;
 
-/*
-V Afegir llibres a la col·lecció.
-V Recuperar la llista completa de llibres (seguint l’ordre d’inserció).
-V Obtenir el títol d’un llibre a partir de la seva posició.
-V Afegir un llibre en una posició específica dins la col·lecció.
-Eliminar un llibre pel seu títol.
-Retornar una còpia de la llista ordenada alfabèticament.
 
-
-V
-Delete a book from its title.
-Return a copy of the list in alphabetical order.
- */
-public class BooksCollection implements Comparator<Book> {
+public class BooksCollection{
     private String name;
     private ArrayList<Book> bookArrayList;
 
@@ -64,14 +48,9 @@ public class BooksCollection implements Comparator<Book> {
     }
 
     // Return a copy of the list in alphabetical order.
-//    public List<Book> getCollection(){
-//
-//        return copyOf(bookArrayList);
-//    }
-
-
-    @Override
-    public int compare(Book book1, Book book2) {
-        return 0;
+    public List<Book> getCollection(){
+        List<Book> listCopy = copyOf(bookArrayList);
+          Collections.sort(listCopy, new NameComparator());
+        return listCopy;
     }
 }
