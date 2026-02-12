@@ -1,7 +1,12 @@
 package first_level.exercise2;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,14 +28,12 @@ També s'ha de validar valors invàlids, com números negatius o massa grans, pe
 
 class IdCalculationTest {
 
-    @Test
-    void calculateY(){
-        IdCalculation id1 = new IdCalculation(48095145);
-        IdCalculation id2 = new IdCalculation(46218815);
+    @ParameterizedTest
+    @CsvSource({"46218815,q", "48095145,y", "35075664,c"})
 
-        Assertions.assertEquals('y', id1.calculateIdLetter());
-        Assertions.assertEquals('q', id2.calculateIdLetter());
-
+    void calculateLetters_ShouldGenerateTheExpectedLetter(long num, char expectedC){
+        IdCalculation id = new IdCalculation(num);
+        Assertions.assertEquals(expectedC, id.calculateIdLetter());
     }
 
 }
