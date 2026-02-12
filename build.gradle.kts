@@ -10,19 +10,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:6.0.2"))
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 tasks.test {
-    useJUnitPlatform {
-        includeTags("fast", "smoke & feature-a")
-        // excludeTags("slow", "ci")
-        includeEngines("junit-jupiter")
-        // excludeEngines("junit-vintage")
-    }
+    useJUnitPlatform()
 }
 
 testing {
