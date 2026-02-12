@@ -1,5 +1,7 @@
 package first_level.exercise1;
 
+import java.util.Objects;
+
 public class Book {
     private final String title;
     private final String author;
@@ -13,5 +15,27 @@ public Book(String title, String author){
 
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Book otherBook = (Book) o;
+        return Objects.equals(title.toLowerCase(), otherBook.title.toLowerCase());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.title == null) ? 0 : this.title.hashCode();
     }
 }
