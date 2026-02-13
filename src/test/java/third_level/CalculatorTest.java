@@ -34,4 +34,22 @@ class CalculatorTest implements WithAssertions {
         assertThat(calculator.getTotal()).isEqualTo(4);
     }
 
+    @Test
+    void calculatorSubtractTwoAndTotalResultIs0() {
+        Calculator calculator = new Calculator();
+        calculator.add(2);
+        assertThat(calculator.subtract(2)).isEqualTo(0);
+        assertThat(calculator.subtract(2)).isNotEqualTo(2);
+
+    }
+
+    @Test
+    void throwIllegalArgumentExceptionWhenSubtractNegativeNumber() {
+        Calculator calculator = new Calculator();
+        assertThatThrownBy(() -> {calculator.subtract(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
+
+    }
+
+
+
 }
