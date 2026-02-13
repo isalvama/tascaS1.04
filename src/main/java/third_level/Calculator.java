@@ -40,4 +40,9 @@ public class Calculator {
         return total;
     }
 
+    public double reset(){
+        total = 0;
+        return total;
+    }
+
 }
