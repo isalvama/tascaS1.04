@@ -33,7 +33,8 @@ public class Calculator {
     }
 
     public double divide(double n){
-        if (n < 0) { throw new IllegalArgumentException("The added input number must be greater than 0");
+        if (n == 0){throw new ArithmeticException("The input number cannot be 0");}
+        if (n < 0) { throw new IllegalArgumentException("The input number must be greater than 0");
         }
         total /= n;
         return total;
