@@ -12,6 +12,8 @@ public class Calculator {
     }
 
     public double add(double n){
+        if (n < 0) { throw new IllegalArgumentException("The added input number must be greater than 0");
+        }
         return total + n;
     }
 
