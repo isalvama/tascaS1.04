@@ -50,6 +50,27 @@ class CalculatorTest implements WithAssertions {
 
     }
 
+    @Test
+    void calculatorMultiplyFourAndTotalResultIs0() {
+        Calculator calculator = new Calculator();
+        calculator.add(0);
+        assertThat(calculator.miltiply(6)).isEqualTo(0);
+        assertThat(calculator.miltiply(6)).isNotEqualTo(6);
 
+    }
 
+    @Test
+    void calculatorMultiplySixToTwoAndTotalResultIsTwelve() {
+        Calculator calculator = new Calculator();
+        calculator.add(2);
+        assertThat(calculator.multiply(6)).isEqualTo(12);
+        assertThat(calculator.multiply(6)).isNotEqualTo(0);
+    }
+
+    @Test
+    void throwIllegalArgumentExceptionWhenMultiplyingNegativeNumber() {
+        Calculator calculator = new Calculator();
+        assertThatThrownBy(() -> {calculator.multiply(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
+
+    }
 }
