@@ -18,4 +18,11 @@ public class Calculator {
         return total;
     }
 
+    public double subtract(double n){
+        if (n < 0) { throw new IllegalArgumentException("The added input number must be greater than 0");
+        }
+        total -= n;
+        return total;
+    }
+
 }
