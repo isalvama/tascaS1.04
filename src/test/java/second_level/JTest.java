@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 class JTest implements WithAssertions{
 
