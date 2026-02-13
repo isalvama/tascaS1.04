@@ -11,4 +11,10 @@ class CalculatorTest implements WithAssertions {
         assertThat(calculator.getTotal()).isEqualTo(0);
     }
 
+    @Test
+    void calculatorAddsTwoAndTotalResultIsTwo() {
+        Calculator calculator = new Calculator();
+        assertThat(calculator.add(2)).isEqualTo(2);
+    }
+
 }
