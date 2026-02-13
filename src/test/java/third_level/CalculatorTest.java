@@ -15,6 +15,15 @@ class CalculatorTest implements WithAssertions {
     void calculatorAddsTwoAndTotalResultIsTwo() {
         Calculator calculator = new Calculator();
         assertThat(calculator.add(2)).isEqualTo(2);
+        assertThat(calculator.add(2)).isNotEqualTo(3);
+
+    }
+
+    @Test
+    void throwIllegalArgumentExceptionWhenAddingNegativeNumber() {
+        Calculator calculator = new Calculator();
+        assertThatThrownBy(() -> {calculator.add(-2);}).isInstanceOf(IllegalArgumentException.class);
+
     }
 
 }
