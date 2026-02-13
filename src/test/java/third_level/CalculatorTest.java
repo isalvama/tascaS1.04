@@ -99,6 +99,6 @@ class CalculatorTest implements WithAssertions {
     void calculatorResetCallResultIsZero() {
         Calculator calculator = new Calculator();
         calculator.add(2);
-        assertThat(calculator.resetTotalValue).equals(0);
+        assertThat(calculator.reset()).isEqualTo(0);
     }
 }
