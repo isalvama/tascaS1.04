@@ -94,4 +94,11 @@ class CalculatorTest implements WithAssertions {
         Calculator calculator = new Calculator();
         assertThatThrownBy(() -> {calculator.divide(0);}).isInstanceOf(ArithmeticException.class);
     }
+
+    @Test
+    void calculatorResetCallResultIsZero() {
+        Calculator calculator = new Calculator();
+        calculator.add(2);
+        assertThat(calculator.resetTotalValue).equals(0);
+    }
 }
