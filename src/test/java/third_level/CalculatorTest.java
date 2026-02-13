@@ -85,13 +85,13 @@ class CalculatorTest implements WithAssertions {
     @Test
     void throwIllegalArgumentExceptionWhenDividingNegativeNumber() {
         Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.multiply(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
+        assertThatThrownBy(() -> {calculator.divide(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
 
     }
 
     @Test
-    void throwIllegalArgumentExceptionWhenDividingbyZero() {
+    void throwArithmeticExceptionWhenDividingbyZero() {
         Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.multiply(0);}).isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() -> {calculator.divide(0);}).isInstanceOf(ArithmeticException.class);
     }
 }
