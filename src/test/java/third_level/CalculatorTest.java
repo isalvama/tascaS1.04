@@ -22,7 +22,7 @@ class CalculatorTest implements WithAssertions {
     @Test
     void throwIllegalArgumentExceptionWhenAddingNegativeNumber() {
         Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.add(-2);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> {calculator.add(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
 
     }
 
