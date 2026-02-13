@@ -1,7 +1,7 @@
 package third_level;
 
 public class Calculator {
-    private int total;
+    private double total;
 
     public Calculator (){
         this.total = 0;
