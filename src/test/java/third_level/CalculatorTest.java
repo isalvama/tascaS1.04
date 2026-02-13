@@ -102,9 +102,15 @@ class CalculatorTest implements WithAssertions {
         assertThat(calculator.reset()).isEqualTo(0);
     }
 
+    @Test
     void calculatorGetTotal() {
         Calculator calculator = new Calculator();
         calculator.add(2);
+        calculator.subtract(1);
+        assertThat(calculator.getTotal()).isEqualTo(1);
+        calculator.multiply(8);
+        assertThat(calculator.getTotal()).isEqualTo(8);
+        calculator.divide(4);
         assertThat(calculator.getTotal()).isEqualTo(2);
     }
 }
