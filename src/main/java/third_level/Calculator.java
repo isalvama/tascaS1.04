@@ -11,4 +11,8 @@ public class Calculator {
         return total;
     }
 
+    public double add(double n){
+        return total + n;
+    }
+
 }
