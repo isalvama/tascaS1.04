@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 class BooksCollectionTest {
-
-    // TODO TEST ADD MUTLIPLE BOOKS
 
     @DisplayName ("The collection should not be null after instancing the class")
     @Test
@@ -59,9 +61,7 @@ class BooksCollectionTest {
         Book book3 = new Book("To Kill a Mockingbird", "Harper Lee");
         Book book4 = new Book("One Hundred Years Of Solitude", "Gabriel García Márquez");
         Book book5 = new Book("Jane Eyre", "Charlotte Bronte");
-        bc.addBook(book1);
-        bc.addBook(book2);
-        bc.addBook(book3);
+        bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3)));
         bc.addBookInPosition(1, book4);
         Assertions.assertEquals(book4, bc.getBookArrayList().get(1));
         bc.addBookInPosition(0, book5);
@@ -80,11 +80,7 @@ class BooksCollectionTest {
         Book book3 = new Book("To Kill a Mockingbird", "Harper Lee");
         Book book4 = new Book("One Hundred Years Of Solitude", "Gabriel García Márquez");
         Book book5 = new Book("Jane Eyre", "Charlotte Bronte");
-        bc.addBook(book1);
-        bc.addBook(book2);
-        bc.addBook(book3);
-        bc.addBook(book4);
-        bc.addBook(book5);
+        bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3, book4, book5)));
         Assertions.assertEquals("Pride And Prejudice", bc.getTitleFromPosition(1));
         Assertions.assertNotEquals("Pride And Prejudice", bc.getTitleFromPosition(0));
         Assertions.assertEquals("Harry Potter", bc.getTitleFromPosition(0));
@@ -102,11 +98,7 @@ class BooksCollectionTest {
         Book book2 = new Book("Pride And Prejudice", "Jane Austen");
         Book book3 = new Book("To Kill a Mockingbird", "Harper Lee");
         Book book4 = new Book("One Hundred Years Of Solitude", "Gabriel García Márquez");
-        Book book5 = new Book("Jane Eyre", "Charlotte Bronte");
-        bc.addBook(book1);
-        bc.addBook(book2);
-        bc.addBook(book3);
-        bc.addBook(book4);
+        bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3, book4)));
         bc.removeBookByTitle("Pride And Prejudice");
         Assertions.assertEquals(3, bc.getBookArrayList().size());
         bc.removeBookByTitle("Harry Potter");
@@ -146,11 +138,8 @@ class BooksCollectionTest {
         Book book3 = new Book("To Kill a Mockingbird", "Harper Lee");
         Book book4 = new Book("One Hundred Years Of Solitude", "Gabriel García Márquez");
         Book book5 = new Book("Pride And Prejudice", "Charlotte Bronte");
-        bc.addBook(book1);
-        bc.addBook(book2);
-        bc.addBook(book3);
+        bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3, book4)));
         bc.addBook(book5);
-        bc.addBook(book4);
         Assertions.assertEquals(4, bc.getBookArrayList().size());
 
     }
