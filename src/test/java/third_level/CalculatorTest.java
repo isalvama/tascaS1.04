@@ -26,4 +26,12 @@ class CalculatorTest implements WithAssertions {
 
     }
 
+    @Test
+    void getTotalAftercalculatorAddsNumbers() {
+        Calculator calculator = new Calculator();
+        calculator.add(2);
+        calculator.add(2);
+        assertThat(calculator.getTotal()).isEqualTo(4);
+    }
+
 }
