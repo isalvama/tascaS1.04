@@ -5,12 +5,10 @@ import java.util.List;
 
 public class Classroom {
     private final String className;
-    private String teacherName;
     private ArrayList<String> studentNames;
 
-    public Classroom(String className, String teacherName){
+    public Classroom(String className){
         this.className = className;
-        this.teacherName = teacherName;
         this.studentNames = new ArrayList<>();
     }
 
@@ -18,9 +16,8 @@ public class Classroom {
         return List.copyOf(studentNames);
     }
 
-    public Classroom(String className, String teacherName, ArrayList<String> studentNamesToAdd){
+    public Classroom(String className, ArrayList<String> studentNamesToAdd){
         this.className = className;
-        this.teacherName = teacherName;
         this.studentNames = new ArrayList<>(studentNamesToAdd);
     }
 
@@ -29,7 +26,7 @@ public class Classroom {
     }
 
     public void addInPosition(int position, String studentName){
-        if (position > studentName.length())
+        if (position > studentNames.size())
         {throw new IndexOutOfBoundsException("The position does not exist in the current ArrayList studentNames");}
         studentNames.add(position, studentName);
     }
