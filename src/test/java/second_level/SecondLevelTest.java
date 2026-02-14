@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 
-class JTest implements WithAssertions{
+class SecondLevelTest implements WithAssertions{
 
     @DisplayName("An assertion that proves that the value of two whole objects is equal")
     @ParameterizedTest
@@ -113,7 +113,7 @@ class JTest implements WithAssertions{
     @Test
     @DisplayName("A map contains one of the keys added to it")
     void hashMapContainsKey() {
-        HashMap<Integer, ArrayList<Integer>> testMap = new HashMap<Integer, ArrayList<Integer>>();
+        HashMap<Integer, ArrayList<Integer>> testMap = new HashMap<>();
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
         ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(7, 3, 5, 1));
         testMap.put(1, array1);
