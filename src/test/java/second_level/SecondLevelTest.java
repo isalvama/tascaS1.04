@@ -44,16 +44,15 @@ class SecondLevelTest implements WithAssertions{
     }
 
     @Test
-    @DisplayName("An assertion indicating that two arrays of integers are identical")
+    @DisplayName("An assertion indicating that two ArrayLists of integers are identical")
     void twoArraysOfInt_AreEqual() {
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
         ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 4, 5, 5));
         assertThat(array1).isEqualTo(array2);
     }
 
     @Test
-    @DisplayName("An assertion indicating that two arrays of integers are not identical")
+    @DisplayName("An assertion indicating that two ArrayLists of integers are not identical")
     void twoArraysOfInt_AreNotEqual() {
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
         ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
@@ -77,7 +76,8 @@ class SecondLevelTest implements WithAssertions{
 
     @Test
     @DisplayName("An assertion to verify that an ArrayList contains the objects in any order.")
-    void arrayListContainsObjAdded() { var container = new ArrayList<>();
+    void arrayListContainsAddedObjects() {
+        List<Object> container = new ArrayList<>();
         Classroom maths = new Classroom("Maths");
         Book book1 = new Book("Nada", "Carmen Laforet");
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(4, 5, 0));
@@ -90,7 +90,8 @@ class SecondLevelTest implements WithAssertions{
 
     @Test
     @DisplayName("An assertion to verify that in an ArrayList one of the objects has been added only once")
-    void arrayListContainsObjAddedOnlyOnce() { var container = new ArrayList<>();
+    void arrayListContainsObjAddedOnlyOnce() {
+        List<Object> container = new ArrayList<>();
         Classroom maths = new Classroom("Maths");
         Book book1 = new Book("Nada", "Carmen Laforet");
         ArrayList<String> array1 = new ArrayList<>(Arrays.asList("Hello", "world", "!"));
@@ -104,7 +105,7 @@ class SecondLevelTest implements WithAssertions{
     @Test
     @DisplayName("An assertion to verify that an ArrayList does not contain a removed object")
     void arrayListDoesNotContainARemovedObj() {
-        var container = new ArrayList<>();
+        List<Object> container = new ArrayList<>();
         Classroom maths = new Classroom("Maths");
         Book book1 = new Book("Nada", "Carmen Laforet");
         ArrayList<Character> array1 = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd'));

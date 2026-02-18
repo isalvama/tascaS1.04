@@ -31,7 +31,7 @@ class CalculatorTest implements WithAssertions {
     }
 
     @Test
-    void getTotalAftercalculatorAddsNumbers() {
+    void getTotalAfterCalculatorAddsNumbers() {
         calculator.add(2);
         calculator.add(2);
         assertThat(calculator.getTotal()).isEqualTo(4);
@@ -46,7 +46,7 @@ class CalculatorTest implements WithAssertions {
     }
 
     @Test
-    void calculatorMultiplyFourAndTotalResultIs0() {
+    void calculatorMultiplyByFourAndTotalResultIs0() {
         calculator.add(0);
         assertThat(calculator.multiply(6)).isEqualTo(0);
         assertThat(calculator.multiply(6)).isNotEqualTo(6);
@@ -54,14 +54,14 @@ class CalculatorTest implements WithAssertions {
     }
 
     @Test
-    void calculatorMultiplySixToTwoAndTotalResultIsTwelve() {
+    void calculatorMultiplyBySixToTwoAndTotalResultIsTwelve() {
         calculator.add(2);
         assertThat(calculator.multiply(6)).isEqualTo(12);
         assertThat(calculator.multiply(6)).isNotEqualTo(0);
     }
 
     @Test
-    void calculatorDivide2AndTotalResultIs2() {
+    void calculatorDivideBy2AndTotalResultIs2() {
         calculator.add(4);
         assertThat(calculator.divide(2)).isEqualTo(2);
         assertThat(calculator.divide(2)).isNotEqualTo(0);

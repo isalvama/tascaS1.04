@@ -32,7 +32,7 @@ class BooksCollectionTest {
 
     @DisplayName ("The collection should be empty after calling removeAllBook()")
     @Test
-    void callingRemoveAllBooksCollection_bookArrayListIsNull() {
+    void callingRemoveAllBooksCollection_bookArrayListIsEmpty() {
         bc.addMultipleBooks(new ArrayList<>(List.of(book1, book2, book3, book4, book5)));
         bc.removeAllBooks();
         Assertions.assertTrue(bc.getBookArrayList().isEmpty());
@@ -44,7 +44,7 @@ class BooksCollectionTest {
         Assertions.assertNotNull(bc.getBookArrayList());
     }
 
-    @DisplayName ("The collection's size is correct after adding a few books")
+    @DisplayName ("The collection's size is correct after adding multiple books")
     @Test
     void addBook_validateBookArrayListSize() {
         bc.addBook(book1);
@@ -55,7 +55,7 @@ class BooksCollectionTest {
 
     @DisplayName ("The books are expected to be in the correct index after having added them in the collection")
     @Test
-    void addBook_IndexCorrectOrder() {
+    void addBook_IndexIsInCorrectOrder() {
         bc.addBook(book1);
         bc.addBook(book2);
         bc.addBook(book3);
@@ -70,7 +70,7 @@ class BooksCollectionTest {
 
     @DisplayName ("Adding a book in a specific position modifies the collection correctly.")
     @Test
-    void addBookInPosition_modificationIndexOfBooksInArray() {
+    void addBookInPosition_modificationInIndexOfBooksInArray() {
         bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3)));
         bc.addBookInPosition(1, book4);
         Assertions.assertEquals(book4, bc.getBookArrayList().get(1));
@@ -94,7 +94,7 @@ class BooksCollectionTest {
 
     @DisplayName("removeBookByTitle reduces the collection's size")
     @Test
-    void removeBookByTitle() {
+    void removeBookByTitle_SizeIsReduced() {
         bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3, book4)));
         bc.removeBookByTitle("Pride And Prejudice");
         Assertions.assertEquals(3, bc.getBookArrayList().size());
@@ -119,7 +119,7 @@ class BooksCollectionTest {
 
     @DisplayName ("Books with duplicated titles cannot be added in the bookArrayList")
     @Test
-    void addBook_DuplicatedTitleBookIsNotAdded() {
+    void addBookWithDuplicatedTitle_theBookIsNotAdded() {
         Book book5 = new Book("Pride And Prejudice", "Charlotte Bronte"); //
         bc.addMultipleBooks(new ArrayList<>(Arrays.asList(book1, book2, book3, book4)));
         bc.addBook(book5);

@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClassroomTest {
 
-    @DisplayName("addInPosition method throws IndexOutOfBoundsException when entering a position greater than the ArrayList size")
+    @DisplayName("addInPosition method throws IndexOutOfBoundsException when entering a position greater than the array size")
     @ParameterizedTest
     @CsvSource ({"3,Carla", "9,Maria"})
-    void callAddInPositionMethodWithPositionGraterThenListSize_ThrowsIndexOutOfBoundsException(int position, String name){
+    void callAddInPositionMethodWithPositionGraterThanArraySize_ThrowsIndexOutOfBoundsException(int position, String name){
         Classroom ceramics = new Classroom("Ceramics", new String[]{"Paul", "Martha"});
         Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {ceramics.getStudentNameInPosition(position);});
         String expectedMessage = "The position index does not exist in the current ArrayList studentNames";
@@ -22,7 +22,7 @@ class ClassroomTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
-    @DisplayName("addInPosition method throws IndexOutOfBoundsException when entering a negative index position")
+    @DisplayName("addInPosition method throws IndexOutOfBoundsException when entering a negative index position in the array")
     @ParameterizedTest
     @CsvSource ({"-3,Paul", "-1,Albert"})
     void callAddInPositionMethodWithNegativePosition_ThrowsIndexOutOfBoundsException(int position, String name){
@@ -33,7 +33,7 @@ class ClassroomTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
-    @DisplayName("addInPosition method doesn't throw IndexOutOfBoundsException when entering a position smaller or equal to the ArrayList's size")
+    @DisplayName("addInPosition method doesn't throw IndexOutOfBoundsException when entering a position smaller or equal to the array's size")
     @ParameterizedTest
     @CsvSource ({"0,Carla", "1,Maria"})
     void testIfExceptionInAddInPositionMethodIsNotThrown(int position, String name){

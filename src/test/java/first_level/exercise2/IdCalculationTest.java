@@ -32,7 +32,7 @@ class IdCalculationTest {
     @DisplayName ("calculateLetters method throws IllegalArgumentException exception when passing numbers of more than 8 letters.")
     @ParameterizedTest
     @CsvSource({"12345678901"})
-    void calculateLetters_ThrowsIllegalArgumentExceptionWhenEnteringNumOfMOreThan8Digits(String num){
+    void calculateLetters_ThrowsIllegalArgumentExceptionWhenEnteringNumOfMoreThan8Digits(String num){
        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             calculateIdLetter(num);});
         String actualMessage = exception.getMessage();

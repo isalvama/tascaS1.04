@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Classroom {
     private final String className;
-    private String[] studentNames;
+    private final String[] studentNames;
 
     public Classroom(String className){
         this.className = className;
