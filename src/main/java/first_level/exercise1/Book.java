@@ -24,15 +24,13 @@ public class Book {
 
     @Override
     public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Book otherBook = (Book) o;
-        return Objects.equals(title.toLowerCase(), otherBook.title.toLowerCase());
-
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(title.toLowerCase(), book.title.toLowerCase());
     }
 
     @Override
     public int hashCode() {
-        return (this.title == null) ? 0 : this.title.hashCode();
+        return Objects.hashCode(title.toLowerCase());
     }
 }
