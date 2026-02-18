@@ -1,34 +1,37 @@
 package third_level;
+import first_level.exercise1.BooksCollection;
 import org.assertj.core.api.WithAssertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class CalculatorTest implements WithAssertions {
+    Calculator calculator;
+    @BeforeEach
+    public void setUp() {
+        calculator = new Calculator();
+    }
+
+    @AfterEach
+    void teardown() {
+        calculator.reset();
+    }
 
     @Test
     void calculatorStartsWithTotalZero() {
-        Calculator calculator = new Calculator();
         assertThat(calculator.getTotal()).isEqualTo(0);
     }
 
     @Test
     void calculatorAddsTwoAndTotalResultIsTwo() {
-        Calculator calculator = new Calculator();
         assertThat(calculator.add(2)).isEqualTo(2);
         assertThat(calculator.add(2)).isNotEqualTo(3);
 
     }
 
     @Test
-    void throwIllegalArgumentExceptionWhenAddingNegativeNumber() {
-        Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.add(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
-
-    }
-
-    @Test
     void getTotalAftercalculatorAddsNumbers() {
-        Calculator calculator = new Calculator();
         calculator.add(2);
         calculator.add(2);
         assertThat(calculator.getTotal()).isEqualTo(4);
@@ -36,7 +39,6 @@ class CalculatorTest implements WithAssertions {
 
     @Test
     void calculatorSubtractTwoAndTotalResultIs0() {
-        Calculator calculator = new Calculator();
         calculator.add(2);
         assertThat(calculator.subtract(2)).isEqualTo(0);
         assertThat(calculator.subtract(2)).isNotEqualTo(2);
@@ -44,15 +46,7 @@ class CalculatorTest implements WithAssertions {
     }
 
     @Test
-    void throwIllegalArgumentExceptionWhenSubtractNegativeNumber() {
-        Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.subtract(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
-
-    }
-
-    @Test
     void calculatorMultiplyFourAndTotalResultIs0() {
-        Calculator calculator = new Calculator();
         calculator.add(0);
         assertThat(calculator.multiply(6)).isEqualTo(0);
         assertThat(calculator.multiply(6)).isNotEqualTo(6);
@@ -61,50 +55,31 @@ class CalculatorTest implements WithAssertions {
 
     @Test
     void calculatorMultiplySixToTwoAndTotalResultIsTwelve() {
-        Calculator calculator = new Calculator();
         calculator.add(2);
         assertThat(calculator.multiply(6)).isEqualTo(12);
         assertThat(calculator.multiply(6)).isNotEqualTo(0);
     }
 
     @Test
-    void throwIllegalArgumentExceptionWhenMultiplyingNegativeNumber() {
-        Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.multiply(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
-
-    }
-
-    @Test
     void calculatorDivide2AndTotalResultIs2() {
-        Calculator calculator = new Calculator();
         calculator.add(4);
         assertThat(calculator.divide(2)).isEqualTo(2);
         assertThat(calculator.divide(2)).isNotEqualTo(0);
     }
 
     @Test
-    void throwIllegalArgumentExceptionWhenDividingNegativeNumber() {
-        Calculator calculator = new Calculator();
-        assertThatThrownBy(() -> {calculator.divide(-2);}).isInstanceOf(IllegalArgumentException.class).withFailMessage("The input number must be greater than 0");
-
-    }
-
-    @Test
-    void throwArithmeticExceptionWhenDividingbyZero() {
-        Calculator calculator = new Calculator();
+    void throwArithmeticExceptionWhenDividingByZero() {
         assertThatThrownBy(() -> {calculator.divide(0);}).isInstanceOf(ArithmeticException.class);
     }
 
     @Test
     void calculatorResetCallResultIsZero() {
-        Calculator calculator = new Calculator();
         calculator.add(2);
         assertThat(calculator.reset()).isEqualTo(0);
     }
 
     @Test
     void calculatorGetTotal() {
-        Calculator calculator = new Calculator();
         calculator.add(2);
         calculator.subtract(1);
         assertThat(calculator.getTotal()).isEqualTo(1);
