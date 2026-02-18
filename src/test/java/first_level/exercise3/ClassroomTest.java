@@ -14,10 +14,21 @@ class ClassroomTest {
     @DisplayName("addInPosition method throws IndexOutOfBoundsException when entering a position greater than the ArrayList size")
     @ParameterizedTest
     @CsvSource ({"3,Carla", "9,Maria"})
-    void addInPositionMethod_ThrowsIndexOutOfBoundsException(int position, String name){
-        Classroom ceramics = new Classroom("Ceramics", new ArrayList<>(Arrays.asList("Paul", "Martha")));
-        Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {ceramics.addInPosition(position, name);});
-        String expectedMessage = "The position does not exist in the current ArrayList studentNames";
+    void callAddInPositionMethodWithPositionGraterThenListSize_ThrowsIndexOutOfBoundsException(int position, String name){
+        Classroom ceramics = new Classroom("Ceramics", new String[]{"Paul", "Martha"});
+        Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {ceramics.getStudentNameInPosition(position);});
+        String expectedMessage = "The position index does not exist in the current ArrayList studentNames";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @DisplayName("addInPosition method throws IndexOutOfBoundsException when entering a negative index position")
+    @ParameterizedTest
+    @CsvSource ({"-3,Paul", "-1,Albert"})
+    void callAddInPositionMethodWithNegativePosition_ThrowsIndexOutOfBoundsException(int position, String name){
+        Classroom ceramics = new Classroom("Ceramics", new String[]{"Natalia"});
+        Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {ceramics.getStudentNameInPosition(position);});
+        String expectedMessage = "The position index can't be negative";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -26,9 +37,8 @@ class ClassroomTest {
     @ParameterizedTest
     @CsvSource ({"0,Carla", "1,Maria"})
     void testIfExceptionInAddInPositionMethodIsNotThrown(int position, String name){
-        Classroom ceramics = new Classroom("Ceramics");
-        ceramics.addStudents("Pau");
-        assertDoesNotThrow(() -> {ceramics.addInPosition(position, name);});
+        Classroom ceramics = new Classroom("Ceramics",  new String[]{"Pau", "Alex"});
+        assertDoesNotThrow(() -> {ceramics.getStudentNameInPosition(position);});
     }
 
 }
