@@ -60,7 +60,7 @@ test/
 ## Concepts covered
 
 - Unit testing with **JUnit 5** and Assertions.
-- Use of annotations like `@Test` and `@DisplayName` for clear test reporting.
+- Use of annotations like `@Test`, `@DisplayName` and `@forEach` for clear test reporting.
 - Implementation of **Parameterized Tests** using `@ParameterizedTest`.
 - Providing multiple test data sets using `@CsvSource`.
 - Verification of **Exceptions** using `assertThrows()`.
@@ -80,7 +80,7 @@ A model class representing a book with `title` and `author`.
 #### BooksCollection class
 This class manages a list of books and encapsulates several operations:
 - **Adding Books**: Includes methods to add a single book (checking for duplicates via `contains()`), multiple books, or a book at a specific index.
-- **Search & Removal**: Allows retrieving a title from a position or removing a book by its exact title.
+- **Search & Removal**: Allows retrieving a title from a position, removing a book by its title or removing all books in BooksCollection.
 - **Defensive Programming**: The `getBookArrayList()` method returns a `copyOf` to prevent external modification of the internal list.
 - **Sorting**: Provides a method to get the collection ordered alphabetically without modifying the original list.
 
@@ -105,13 +105,15 @@ This is a utility class designed to calculate the official Spanish ID (DNI) lett
     - It removes leading zeros using regex.
     - It throws an `IllegalArgumentException` if the number is negative or has more than 8 digits.
     - It throws a `NumberFormatException` if the input contains non-digit characters.
-- **Calculation**: It uses the modulo 23 algorithm and a `switch` expression to map the remainder to its corresponding legal letter.
+- **Calculation**: the remainder maps to its corresponding legal letter.
 
 #### IdCalculationTest (Parameterized Tests)
 This test class focuses on efficiency by using parameterized testing, which allows running the same test logic with multiple inputs:
 - **Correct Letter Mapping**: A `@ParameterizedTest` with a `@CsvSource` containing 13 real ID examples (including those starting with 0) is used to verify that the `calculateIdLetter` method returns the expected character for each case.
 - **Exception Testing (Negative Numbers)**: Verifies that passing negative numbers correctly triggers an `IllegalArgumentException` with the expected error message.
 - **Exception Testing (Length)**: Checks that strings exceeding the digit limit are caught and handled by throwing the appropriate exception.
+- **Exception Testing (Numbers)**: Verifies strings that contain other digits than numbers are caught and handled by throwing the appropriate `NumberFormatException` exception.
+
 - **Robustness**: These tests ensure that the validation logic and the calculation logic work correctly under both valid and invalid scenarios.
 
 
@@ -119,12 +121,12 @@ This test class focuses on efficiency by using parameterized testing, which allo
 
 #### Classroom class
 A class representing a group of students in a classroom.
-- **Data Structure**: It uses an `ArrayList<String>` to store student names.
-- **Custom Exception Handling**: The `addInPosition()` method includes a manual check for the insertion index. If the provided position is greater than the current size of the list, it explicitly throws an `IndexOutOfBoundsException` with a descriptive custom message, instead of relying solely on the default JVM behavior.
+- **Data Structure**: It uses an `Strin[]` to store student names.
+- **Custom Exception Handling**: The `getStudentNameInPosition()` method includes a manual check for the getter index. If the provided position is greater than the current size of the list or negative, it explicitly throws an `IndexOutOfBoundsException` with a descriptive custom message, instead of relying solely on the default JVM behavior.
 
 #### ClassroomTest (Exception Validation)
 This test suite ensures that the collection's integrity and error handling are robust through two specific types of tests:
-- **Exception Verification**: Using `@ParameterizedTest`, it provides indices that are guaranteed to be out of the current list bounds (e.g., trying to insert in position 3 when there are only 2 elements). The test verifies that the `IndexOutOfBoundsException` is thrown and that its message matches the custom text defined in the `Classroom` class.
+- **Exception Verification**: Using `@ParameterizedTest`, it provides indices that are guaranteed to be out of the current list bounds (e.g., trying to insert in position 3 when there are only 2 elements) or negative. The test verifies that the `IndexOutOfBoundsException` is thrown and that its message matches the custom text defined in the `Classroom` class.
 - **No-Exception Verification**: It also includes tests using `assertDoesNotThrow()`. This confirms that as long as the position is valid (within the range of 0 to `size`), the student is added correctly without any interruption to the program flow.
 
 
@@ -156,16 +158,12 @@ This test suite utilizes **AssertJ** instead of standard JUnit assertions to pro
 #### Calculator class
 A functional class designed to perform basic arithmetic operations while maintaining a running total.
 - **State Management**: The class stores a `total` value that is modified by each operation (`add`, `subtract`, `multiply`, `divide`).
-- **Input Validation**: To ensure business logic integrity, the class implements strict rules:
-    - Most operations throw an `IllegalArgumentException` if a negative number is provided.
-    - The `divide` method specifically checks for a zero divisor to throw an `ArithmeticException`, preventing undefined mathematical operations.
+- **Input Validation**: To ensure business logic integrity, the class implements a rule: the `divide` method specifically checks for a zero divisor to throw an `ArithmeticException`, preventing undefined mathematical operations.
 - **Reset Logic**: Includes a `reset()` method to restore the total to zero, allowing for new calculation sequences.
 
 #### CalculatorTest class
 This test suite uses **AssertJ** to verify the calculator's reliability. It focuses on several critical aspects:
-- **Initial State**: Ensures the calculator starts with a total of zero.
+- **Initial State**: Ensures the calculator is instantiated and starts with a total of zero.
 - **Cumulative Operations**: Validates that multiple calls to different methods (e.g., adding then subtracting) correctly update the internal `total` and that `getTotal()` returns the expected result.
-- **Error Handling**:
-    - Uses `assertThatThrownBy` to confirm that illegal inputs (negative numbers) are caught across all relevant methods.
-    - Verifies that division by zero is correctly identified and handled.
+- **Error Handling**: Uses `assertThatThrownBy` to confirm that division by zero is correctly identified and handled.
 - **Functional Flow**: Tests the `reset()` functionality and checks that the methods return the updated total immediately after the operation, ensuring the API behaves as expected for the user.
