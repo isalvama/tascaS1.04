@@ -8,10 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 
 class SecondLevelTest implements WithAssertions{
@@ -53,6 +50,14 @@ class SecondLevelTest implements WithAssertions{
         ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
         ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 4, 5, 5));
         assertThat(array1).isEqualTo(array2);
+    }
+
+    @Test
+    @DisplayName("An assertion indicating that two arrays of integers are not identical")
+    void twoArraysOfInt_AreNotEqual() {
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 4, 5, 5));
         assertThat(array1).isNotEqualTo(array3);
         assertThat(array2).isNotEqualTo(array3);
     }
@@ -60,7 +65,7 @@ class SecondLevelTest implements WithAssertions{
     @Test
     @DisplayName("An assertion to verify the order of the objects in an ArrayList is the way they were inserted")
     void orderOfObjInArray_AreEqual() {
-        var container = new ArrayList<>();
+        List<Object> container = new ArrayList<>();
         Classroom maths = new Classroom("Maths");
         Book book1 = new Book("Nada", "Carmen Laforet");
         ArrayList<Character> array1 = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd'));
@@ -125,9 +130,9 @@ class SecondLevelTest implements WithAssertions{
     @Test
     @DisplayName("An assertion that validates that the exception ArrayIndexOutOfBoundsException is thrown when appropriate")
     void arrayIndexOutOfBoundsExceptionIsThrownWhenAppropriate() {
-        Classroom ceramics = new Classroom("Ceramics");
-        assertThatThrownBy(() -> {ceramics.addInPosition(1, "Laura");}).isInstanceOf(IndexOutOfBoundsException.class);
-        assertThatThrownBy(() -> {ceramics.addInPosition(8, "Emma");}).isInstanceOf(IndexOutOfBoundsException.class);
+        Classroom ceramics = new Classroom("Ceramics", new String[] {"Laura", "Emma", "Paula"});
+        assertThatThrownBy(() -> {ceramics.getStudentNameInPosition(3);}).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThatThrownBy(() -> {ceramics.getStudentNameInPosition(8);}).isInstanceOf(IndexOutOfBoundsException.class);
 
     }
 
