@@ -13,17 +13,20 @@ public class BooksCollection{
         this.bookArrayList = new ArrayList<>();
     }
 
-    public void addBook(Book b){
-       if(!bookArrayList.contains(b))
-        bookArrayList.add(b);
+    public void addBook(Book book){
+       if(!bookArrayList.contains(book))
+        bookArrayList.add(book);
     }
 
-    public void addMultipleBooks(Collection<Book> b){
-        bookArrayList.addAll(b);
+    public void addMultipleBooks(Collection<Book> bookCollection){
+        for(Book book : bookCollection)
+            if(!bookArrayList.contains(book)){
+                bookArrayList.add(book);
+            }
     }
 
-    public void addBookInPosition(int index, Book b){
-        bookArrayList.add(index, b);
+    public void addBookInPosition(int index, Book book){
+        bookArrayList.add(index, book);
     }
 
     public List<Book> getBookArrayList() {
@@ -35,16 +38,21 @@ public class BooksCollection{
     }
 
     public void removeBookByTitle(String title){
-        for (int i = 0; i < bookArrayList.size(); i++){
-            if (title.equals(bookArrayList.get(i).getTitle())){
-                bookArrayList.remove(i);
+        Iterator<Book> booksIterator = bookArrayList.iterator();
+        while (booksIterator.hasNext()){
+            if (booksIterator.next().getTitle().equals(title)){
+                booksIterator.remove();
             }
         }
     }
 
-    public List<Book> getOrderedCollection(){
-        ArrayList<Book> listCopy = new ArrayList<>(bookArrayList);
+    public List<Book> getOrderedBooksCollection(){
+        List<Book> listCopy = new ArrayList<>(bookArrayList);
           listCopy.sort(new NameComparator());
         return listCopy;
+    }
+
+    public void removeAllBooks() {
+        bookArrayList.clear();
     }
 }
