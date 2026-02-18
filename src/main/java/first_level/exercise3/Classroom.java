@@ -1,28 +1,29 @@
 package first_level.exercise3;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Classroom {
     private final String className;
-    private ArrayList<String> studentNames;
+    private String[] studentNames;
 
     public Classroom(String className){
         this.className = className;
-        this.studentNames = new ArrayList<>();
+        this.studentNames = new String[]{};
     }
 
-    public Classroom(String className, ArrayList<String> studentNamesToAdd){
+    public Classroom(String className, String[] studentNamesToAdd){
         this.className = className;
-        this.studentNames = new ArrayList<>(studentNamesToAdd);
+        this.studentNames = studentNamesToAdd;
     }
 
-    public void addStudents(String studentName){
-        studentNames.add(studentName);
-    }
-
-    public void addInPosition(int position, String studentName){
-        if (position > studentNames.size())
-        {throw new IndexOutOfBoundsException("The position does not exist in the current ArrayList studentNames");}
-        studentNames.add(position, studentName);
+    public String getStudentNameInPosition(int position){
+        if (position > studentNames.length) {
+            throw new ArrayIndexOutOfBoundsException("The position index does not exist in the current ArrayList studentNames");
+        }
+        if (position < 0) {
+            throw new ArrayIndexOutOfBoundsException("The position index can't be negative");
+        }
+        return studentNames[position];
     }
 }
